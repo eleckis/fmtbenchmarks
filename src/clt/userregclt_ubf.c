@@ -27,32 +27,33 @@
 /*---------------------------Enums--------------------------------------*/
 /*---------------------------Typedefs-----------------------------------*/
 struct Customer {
-	char name[50];
-	char surname[50];
-	char code[13];
-	long birthDate;
-	char gender[1];
-	char natoinality[30];
-	char country[30];
-	char city[30];
-	char addr[150];
-	char family[15];
-	short childs;
-	char docNo[50];
-	char telNo[14];
-	char email[50];
-	char type[10];
-	char additdata[255];
-	char level[30];
-	char rigths[50];
-	short status;
-
+    char name[50];
+    char surname[50];
+    char code[13];
+    long birthDate;
+    char gender[1];
+    char natoinality[30];
+    char country[30];
+    char city[30];
+    char addr[150];
+    char family[15];
+    short childs;
+    char docNo[50];
+    char telNo[14];
+    char email[50];
+    char type[10];
+    char additdata[255];
+    char level[30];
+    char rigths[50];
+    short status;
+    short payload_num[1000];
+    short payload_str[1000][100];
 };
 struct Employee {
-	char name[50];
-	char surname[50];
-	char code[30];
-	char notes[255];
+    char name[50];
+    char surname[50];
+    char code[30];
+    char notes[255];
 };
 /*---------------------------Globals------------------------------------*/
 /*---------------------------Statics------------------------------------*/
