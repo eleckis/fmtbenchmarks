@@ -88,7 +88,7 @@ int process (char proctype)
 	double d;
 	double milis;
 	int i, j;
-	char svcname[XATMI_SERVICE_NAME_LENGTH+1];
+	char *svcname =  msg_service();
 	
 	memset(&msg, 0, sizeof(msg));
 	
@@ -136,9 +136,9 @@ int process (char proctype)
 		
 		ndrx_stopwatch_reset(&timer);
 		
-		for(j=0;j<100000;++)
+		for(j=0;j<100000;j++)
 		{
-			if (SUCCEED != msg_build(msg, &buf, &len, svcname))
+			if (SUCCEED != msg_build(&msg, &buf, &len))
 			{
 				TP_LOG(log_error, "TESTERROR: Failed build msg");
 				ret=FAIL;
@@ -148,12 +148,13 @@ int process (char proctype)
 			if (FAIL==tpcall(svcname, buf, 0L, &buf, 
 				&rsplen, TPNOTIME))
 			{
-				TP_LOG(log_error, "TESTERROR: USERREGSV_XML failed: %s", tpstrerror(tperrno));
+				TP_LOG(log_error, "TPCALL: %s failed: %s", 
+					svcname, tpstrerror(tperrno));
 				ret=FAIL;
 				goto out;
 			}
 			
-			if(SUCCEED != parse_msg(msg, buf, rsplen))
+			if(SUCCEED != parse_msg(&msg, buf, rsplen))
 			{
 				TP_LOG(log_error, "TESTERROR: Failed parse msg");
 				ret=FAIL;
@@ -162,15 +163,20 @@ int process (char proctype)
 			
 			if(msg.rsp.rspstatus != 100)
 			{
-				TP_LOG(log_error, "TESTERROR: Invalid status, expected [100] got [%d]", msg.rsp.rspstatus);
+				TP_LOG(log_error, "TESTERROR: Invalid status, "
+					"expected [100] got [%d]", 
+					msg.rsp.rspstatus);
 				ret=FAIL;
 				goto out;
 			}
 			
-			if(0!=strcmp(msg.rsp.rsprspmsg, "User successfully registered"))
+			if(0!=strcmp(msg.rsp.rsprspmsg, "User successfully "
+				"registered"))
 			{
-				TP_LOG(log_error, "TESTERROR: Invalid response msg, expected"
-					"[User successfully registered] got [%s]", msg.rsp.rsprspmsg);
+				TP_LOG(log_error, "TESTERROR: Invalid response "
+					"msg, expected "
+					"[User successfully registered] got [%s]", 
+					msg.rsp.rsprspmsg);
 				ret=FAIL;
 				goto out;
 			}
@@ -199,11 +205,6 @@ out:
 	{
 		free(buf);
 	}
-
-	if(NULL != msg)
-	{
-		free(msg);
-	}
 	
 	return ret;
 }
@@ -217,6 +218,12 @@ out:
 int main(int argc, char** argv)
 {
 	int ret = SUCCEED;
+	
+	if(argc!=2)
+	{
+		fprintf(stderr, "Usage %s [C/D]\n", argv[0]);
+		exit(-1);
+	}
 
 	if (SUCCEED!=init(argc, argv)){
 		TP_LOG(log_error, "Failed to Initialise!");
@@ -225,7 +232,7 @@ int main(int argc, char** argv)
 	}
 	
 	
-	if (SUCCEED!=process()){
+	if (SUCCEED!=process(argv[1][0])){
 		TP_LOG(log_error, "Process failed!");
 		ret=FAIL;
 		goto out;

@@ -11,6 +11,7 @@
 #include <ubf.h>
 #include <Exfields.h>
 #include <userreg.fd.h>
+#include <domain.h>
 /*---------------------------Externs------------------------------------*/
 /*---------------------------Macros-------------------------------------*/
 
@@ -33,7 +34,7 @@
  * Service entry
  * @return SUCCEED/FAIL
  */
-void USERREGSV_XML (TPSVCINFO *p_svc)
+void USERREGSV (TPSVCINFO *p_svc)
 {
     int ret = SUCCEED;
     int rsp = 0;
@@ -63,7 +64,7 @@ void USERREGSV_XML (TPSVCINFO *p_svc)
     msg.rsp.rspstatus = 100;
     strcpy(msg.rsp.rsprspmsg, "User successfully registered");
     
-    if(SUCCEED != msg_build(msg, &buf, &len, svcname))
+    if(SUCCEED != msg_build(&msg, &buf, &len))
     {
 	TP_LOG(log_error, "Failed to build msg");
 	ret=FAIL;
@@ -104,7 +105,7 @@ int init(int argc, char** argv)
 
 	
 	/* Advertise our service */
-	if (SUCCEED!=tpadvertise("USERREGSV_UBF", USERREGSV_UBF))
+	if (SUCCEED!=tpadvertise("USERREGSV_UBF", USERREGSV))
 	{
 		TP_LOG(log_error, "Failed to initialise USERREGSV_UBF!");
 		ret=FAIL;

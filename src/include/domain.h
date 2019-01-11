@@ -84,8 +84,9 @@ typedef struct {
 /*---------------------------Globals------------------------------------*/
 /*---------------------------Statics------------------------------------*/
 /*---------------------------Prototypes---------------------------------*/
-extern int msg_build(Message_t *msg, char **outbuf, long *olen, char *svcnm);
+extern int msg_build(Message_t *msg, char **outbuf, long *olen);
 extern int parse_msg(Message_t *msg, char *ibuf, long ilen);
+extern char *msg_service(void);
 
 #ifdef __cplusplus
 }

@@ -72,16 +72,20 @@ static msgbuilder_t M_msgflds[] =
 
 /*---------------------------Prototypes---------------------------------*/
 
+char *msg_service(void)
+{
+	static char svc[] = "USERREG_XML";
+	return svc;
+}
 
 /**
  * Build outgoing message
  * @param[in] msg full message to send
  * @param[out] outbuf output buffer/XATMI allocated
  * @param[out] olen output buffer len
- * @param[in] svcnm Service name to call
  * @return SUCCEED/FAIL
  */
-int msg_build(Message_t *msg, char **outbuf, long *olen, char *svcnm)
+int msg_build(Message_t *msg, char **outbuf, long *olen)
 {
     int ret = SUCCEED;
     msgbuilder_t *p = M_msgflds;
@@ -102,11 +106,6 @@ int msg_build(Message_t *msg, char **outbuf, long *olen, char *svcnm)
     if (NULL==*outbuf)
     {
         *outbuf = tpalloc("STRING", NULL, MAX_BUFSZ);
-    }
-    
-    if (NULL!=svcnm)
-    {
-        strcpy(svcnm, "USERREGSV_XML");
     }
     
     if (NULL==*outbuf)
