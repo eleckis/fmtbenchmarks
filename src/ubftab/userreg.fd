@@ -17,24 +17,37 @@ U_ADRESS		9	string	- 1 Lietotaja adrese
 U_FAMILY_STATE	10	string	- 1 Lietotaja gimenes stavoklis
 U_CHILDS		11	short	- 1 Lietotaja bernu skaits
 U_DOC_NR		12	string	- 1 Lietotaja uzraditais dokumenta nr
-U_TEL_NR		13	string	- 1 Lietotaja telefona nr
-U_EMAIL			14	string	- 1 Lietotaja epasts
-U_TYPE			15	string	- 1 Lietotaja tips
-U_ADDITDATA		16	string	- 1 Lietotaja papilds dati
-U_LEVEL			17	string	- 1 Lietotaja limenis
-U_PERMISSIONS	18	string	- 1 Lietotaja tiesibas
-U_STATUS		19	short	- 1 Lietotaja statuss
-S_DATE			20	long	- 1 Sistemas datums
-S_UNIQUE_NR		21	string	- 1 Sistemas unikalais nr
-S_REG_TYPE		22	string	- 1 Sistemas registracijas veids
-S_DEVICE_NR		23	string	- 1 Sistemas ierices numurs
-S_APP_VERSION	24	string	- 1 Sistemas lietojuma versija
-E_NAME			25	string	- 1 Darbinieka vards
-E_SURNAME		26	string	- 1 Darbinieka uzvards
-E_IDENT			27	string	- 1 Darbinieka identifikators
-E_NOTES			28	string	- 1 Darbinieka piezimes
-S_REG_MSG		29	string	- 1 Sistemas registracijas zinojums
-S_REG_STATUS	30	short	- 1 Registracijas statuss
+U_DOC_VALID_FROM	13	long	- 1 Dokuments derigs no
+U_DOC_VALID_TILL	14	long	- 1 Dokuments derigs lidz
+U_TEL_NR		15	string	- 1 Lietotaja telefona nr
+U_EMAIL			16	string	- 1 Lietotaja epasts
+U_TYPE			17	string	- 1 Lietotaja tips
+U_ADDITDATA		18	string	- 1 Lietotaja papilds dati
+U_LEVEL			19	string	- 1 Lietotaja limenis
+U_PERMISSIONS	20	string	- 1 Lietotaja tiesibas
+U_STATUS		21	short	- 1 Lietotaja statuss
+U_BALANCE               22      double  - 1 Sakotneja bilance
+U_BONUS                 23      double  - 1 Bonuss
+S_DATE			24	long	- 1 Sistemas datums
+S_UNIQUE_NR		25	string	- 1 Sistemas unikalais nr
+S_REG_TYPE		26	string	- 1 Sistemas registracijas veids
+S_DEVICE_NR		27	string	- 1 Sistemas ierices numurs
+S_APP_VERSION	28	string	- 1 Sistemas lietojuma versija
+E_NAME			29	string	- 1 Darbinieka vards
+E_SURNAME		30	string	- 1 Darbinieka uzvards
+E_IDENT			31	string	- 1 Darbinieka identifikators
+E_NOTES			32	string	- 1 Darbinieka piezimes
+S_REG_MSG		33	string	- 1 Sistemas registracijas zinojums
+S_REG_STATUS	34	short	- 1 Registracijas statuss
+U_DOC_TYP		35	short	- 1 Dokumenta tips P I A
+U_RISC_GROUP		36	short	- 1 Lietotaja riska grupa
+U_AVG_SALARY		37	long	- 1 Lietotaja videja alga
+U_PROC_RATE		38	double	- 1 Lietotaja apr proc likme
+S_CUR		39	string	- 1 Sistemas valuta
+U_LOY_CUR		40	string	- 1 Lojalitate programmas valuta
+S_CUR_RATE		41	double	- 1 Sistemas valutas tekosais kurss
+U_LOY_CUR_EXP		42	long	- 1 Lojalitates punktu derigums
+S_BUS_DATE		43	long	- 1 Sistemas biznesa diena
 
 
 $#endif

@@ -12,7 +12,10 @@ extern "C" {
     
 /*---------------------------Externs------------------------------------*/
 /*---------------------------Macros-------------------------------------*/
-
+#define MAX_ARR		500
+#define PROC_DEC_ARR	'D'
+#define PROC_STR_ARR	'S'
+	
 #ifndef SUCCEED
 #define SUCCEED			0
 #endif

@@ -33,46 +33,48 @@
  * Service entry
  * @return SUCCEED/FAIL
  */
-void USERREGSV_UBF (TPSVCINFO *p_svc)
+void USERREGSV_XML (TPSVCINFO *p_svc)
 {
     int ret = SUCCEED;
     int rsp = 0;
+    Message_t msg;
+    long len = p_svc->len+1024;
 
-
-    UBFH *p_ub = (UBFH *)p_svc->data;
-
-    tplogprintubf(log_info, "Got request", p_ub);
+    char * buf = p_svc->data;
+    char svcname[XATMI_SERVICE_NAME_LENGTH+1];
 
 
     /* allocate some stuff for more data to put in  */
-    if (NULL==(p_ub = (UBFH *)tprealloc((char *)p_ub, 4096)))
+    if (NULL==(buf = tprealloc(buf, len)))
     {
-        ret=FAIL;
-        goto out;
+	TP_LOG(log_error, "Failed reallocate buffer to size %d: %s", len, tpstrerror(tperrno));
+	ret=FAIL;
+	goto out;
     }
 
-    /* Read fields sent by server and check dynamically for
-     * values that were sent by clt. If some field does not match
-     * set S_REG_MSG field and skip other field checking 
-     */
-
-    /* If all fields were OK, then set response */
-    if (SUCCEED == ret)
+    if (SUCCEED != parse_msg(&msg, buf, len))
     {
-        if (SUCCEED!=Badd(p_ub, S_REG_STATUS, (char *)&rsp, 0L))
-        {
-                TP_LOG(log_error, "Failed to set S_REG_STATUS: %s",  
-                      Bstrerror(Berror));
-                ret=FAIL;
-                goto out;
-        }
+	TP_LOG(log_error, "Failed to parse msg");
+	ret=FAIL;
+	goto out;
+	    
+    }
+    
+    msg.rsp.rspstatus = 100;
+    strcpy(msg.rsp.rsprspmsg, "User successfully registered");
+    
+    if(SUCCEED != msg_build(msg, &buf, &len, svcname))
+    {
+	TP_LOG(log_error, "Failed to build msg");
+	ret=FAIL;
+	goto out;
     }
 
 out:
 
     tpreturn(  ret==SUCCEED?TPSUCCESS:TPFAIL,
             0L,
-            (char *)p_ub,
+            buf,
             0L,
             0L);
 
