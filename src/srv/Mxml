@@ -1,0 +1,21 @@
+
+SOURCES = userregsv_ubf.c
+TARGET  = userregsv_xml
+OBJECTS = $(SOURCES:%.c=%.o)
+CFLAGS	= -I../ubftab -I ../include -L../xmlpars
+LIBS = -lxmlpars -latmisrvinteg -latmi -lubf -lnstd -lpthread -lrt -ldl -lm -lxml2
+
+default: target
+
+target: $(TARGET)
+
+$(TARGET): $(OBJECTS)
+	$(CC) $(CFLAGS) -o $@ $(LDFLAGS) $^ $(LIBS)
+
+%.o: %.cpp
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+clean:
+	-rm *.o
+	-rm $(TARGET)
+
