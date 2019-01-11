@@ -1,5 +1,5 @@
 
-SOURCES = userregsv_ubf.c
+SOURCES = userregsv.c
 TARGET  = userregsv_xml
 OBJECTS = $(SOURCES:%.c=%.o)
 CFLAGS	= -I../ubftab -I ../include -L../xmlpars -g

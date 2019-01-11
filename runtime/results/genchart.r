@@ -52,8 +52,7 @@ for (i in 1:nConfigurations) {
 } 
 
 # add a title and subtitle 
-#title("Example graph of benchmarking", "Enduro/X benchmark")
-title(TITLE, "Enduro/X Benchmark")
+title(TITLE, "Data format benchmark")
 
 ux <- unique(Bench$Configuration)
 

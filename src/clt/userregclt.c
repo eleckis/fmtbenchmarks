@@ -116,7 +116,7 @@ int process (char proctype)
 	
 	
 
-	for(i=0; i<MAX_ARR; i+=100)
+	for(i=0; i<MAX_ARR; i+=50)
 	{
 		if ('D' == proctype)
 		{

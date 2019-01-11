@@ -48,6 +48,7 @@ U_LOY_CUR		40	string	- 1 Lojalitate programmas valuta
 S_CUR_RATE		41	double	- 1 Sistemas valutas tekosais kurss
 U_LOY_CUR_EXP		42	long	- 1 Lojalitates punktu derigums
 S_BUS_DATE		43	long	- 1 Sistemas biznesa diena
-
+U_PYLDNUM               50      short   - 1 Decimalo lauku tests
+U_PYLDSTR               51      string   - 1 Teksta virknes lauku tests
 
 $#endif

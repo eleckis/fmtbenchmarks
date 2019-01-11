@@ -39,15 +39,19 @@ void USERREGSV (TPSVCINFO *p_svc)
     int ret = SUCCEED;
     int rsp = 0;
     Message_t msg;
-    long len = p_svc->len+1024;
+    long len;
     char * buf = p_svc->data;
 
     memset(&msg, 0, sizeof(msg));
     
     /* allocate some stuff for more data to put in  */
+    
+    len = tptypes(p_svc->data, NULL, NULL) + 1024;
+    
     if (NULL==(buf = tprealloc(buf, len)))
     {
-	TP_LOG(log_error, "Failed reallocate buffer to size %d: %s", len, tpstrerror(tperrno));
+	TP_LOG(log_error, "Failed reallocate buffer to size %d: %s", 
+                len, tpstrerror(tperrno));
 	ret=FAIL;
 	goto out;
     }

@@ -98,5 +98,11 @@
 			<srvid>1</srvid>
 			<sysopt>-e ${NDRX_APPHOME}/log/userreg_xml.log -r</sysopt>
 		</server>
+		<server name="userregsv_ubf">
+			<min>1</min>
+			<max>1</max>
+			<srvid>100</srvid>
+			<sysopt>-e ${NDRX_APPHOME}/log/userreg_ubf.log -r</sysopt>
+		</server>
 	</servers>
 </endurox>
