@@ -2,7 +2,7 @@
 SOURCES = xmlpars.c
 TARGET  = libxmlpars.a
 OBJECTS = $(SOURCES:%.c=%.o)
-CFLAGS	= -I../ubftab -I ../include -I /usr/include/libxml2
+CFLAGS	= -I../ubftab -I ../include -I /usr/include/libxml2 -g
 LIBS = -latmiclt -latmi -lubf -lnstd -lpthread -lrt -ldl -lm
 
 default: target

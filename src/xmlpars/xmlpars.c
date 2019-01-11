@@ -64,8 +64,8 @@ static msgbuilder_t M_msgflds[] =
     {"empnotes",OFFSZ(Message_t, emp), OFFSZ(Employee_t, empnotes), 0, MSG_STRING},
     
     /* response mappings */
-    {"rsprspmsg",OFFSZ(Message_t, emp), OFFSZ(Response_t, rsprspmsg), 0, MSG_STRING},
-    {"rspstatus",OFFSZ(Message_t, emp), OFFSZ(Response_t, rspstatus), 0, MSG_SHORT},
+    {"rsprspmsg",OFFSZ(Message_t, rsp), OFFSZ(Response_t, rsprspmsg), 0, MSG_STRING},
+    {"rspstatus",OFFSZ(Message_t, rsp), OFFSZ(Response_t, rspstatus), 0, MSG_SHORT},
     {0}
 };
 
@@ -122,7 +122,7 @@ int msg_build(Message_t *msg, char **outbuf, long *olen)
     rootNode = xmlNewNode(NULL, BAD_CAST "user");
     xmlDocSetRootElement(newDoc, rootNode);
             
-    while (0!=p->tag)
+    while (0!=p->tag[0])
     {
         fld_ptr = (char *)msg + p->msgoffs + p->elmoffs;
                 
@@ -173,7 +173,8 @@ int msg_build(Message_t *msg, char **outbuf, long *olen)
                 
                 break;
             default:
-                TP_LOG(log_error, "Unknown element type %d!", p->elmtyp);
+                TP_LOG(log_error, "Unknown element type %d tag: [%s]!", 
+                        p->elmtyp, p->tag);
                 ret=FAIL;
                 goto out;
                 break;
@@ -184,11 +185,10 @@ int msg_build(Message_t *msg, char **outbuf, long *olen)
     
     /* build xmldoc, copy to outbuf, specify size */
     xmlDocDumpMemory( newDoc, &xmlDocInMemory, &size );
-    strcpy(*outbuf, xmlDocInMemory);
-    *olen = size;
+    strncpy(*outbuf, xmlDocInMemory, size);
+    (*outbuf)[size] = 0;
+    *olen = size+1;
     xmlFree(xmlDocInMemory);
-    
-    
     
     TP_LOG(log_debug, "got XML [%s]", *outbuf);
     
@@ -221,9 +221,9 @@ static msgbuilder_t *get_tag(char *tag)
         *cp = 0; /* put EOS at the end */
     }
             
-    while (0!=p->tag)
+    while (0!=p->tag[0])
     {
-        if (0==strcmp(p->tag, tag))
+        if (0==strcmp(p->tag, tmp_tag))
         {
             return p;
         }

@@ -40,11 +40,10 @@ void USERREGSV (TPSVCINFO *p_svc)
     int rsp = 0;
     Message_t msg;
     long len = p_svc->len+1024;
-
     char * buf = p_svc->data;
-    char svcname[XATMI_SERVICE_NAME_LENGTH+1];
 
-
+    memset(&msg, 0, sizeof(msg));
+    
     /* allocate some stuff for more data to put in  */
     if (NULL==(buf = tprealloc(buf, len)))
     {
@@ -105,7 +104,7 @@ int init(int argc, char** argv)
 
 	
 	/* Advertise our service */
-	if (SUCCEED!=tpadvertise("USERREGSV_UBF", USERREGSV))
+	if (SUCCEED!=tpadvertise(msg_service(), USERREGSV))
 	{
 		TP_LOG(log_error, "Failed to initialise USERREGSV_UBF!");
 		ret=FAIL;

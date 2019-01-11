@@ -30,8 +30,7 @@ extern "C" {
 #define MSG_ARRAY_SHORT              4
 #define MSG_ARRAY_STRING             5
     
-    
-#define MAX_BUFSZ                   64000
+#define MAX_BUFSZ                   2240000
 #define MAX_STR                     50
     
 /*---------------------------Enums--------------------------------------*/
@@ -39,9 +38,9 @@ extern "C" {
 typedef struct {
     char name[50];
     char surname[50];
-    char code[13];
+    char code[14];
     long birthDate;
-    char gender[1];
+    char gender[2];
     char natoinality[30];
     char country[30];
     char city[30];

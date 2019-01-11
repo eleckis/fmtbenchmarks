@@ -2,7 +2,7 @@
 SOURCES = userregclt_ubf.c
 TARGET  = userregclt_xml
 OBJECTS = $(SOURCES:%.c=%.o)
-CFLAGS	= -I../ubftab -I../include -L../xmlpars
+CFLAGS	= -I../ubftab -I../include -L../xmlpars -g
 LIBS = -lxmlpars -latmiclt -latmi -lubf -lnstd -lpthread -lrt -ldl -lm -lxml2
 
 default: target

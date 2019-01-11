@@ -128,16 +128,19 @@ int process (char proctype)
 		} else if ('S' == proctype)
 		{
 			msg.cust.pyldstr_items=i;
-			for(j=0;j<i;j++)	
+			for(j=0;j<i;j++)
 			{
-				sprintf(msg.cust.pyldstr[j],"string number %d", MAX_ARR-i);
+				sprintf(msg.cust.pyldstr[j],"String with number %d. "
+                                        "This is test", MAX_ARR-i);
 			}
 		}
 		
 		ndrx_stopwatch_reset(&timer);
 		
-		for(j=0;j<100000;j++)
+		for(j=0;j<10000;j++)
 		{
+                        msg.rsp.rspstatus = 0;
+                        msg.rsp.rsprspmsg[0] = 0;
 			if (SUCCEED != msg_build(&msg, &buf, &len))
 			{
 				TP_LOG(log_error, "TESTERROR: Failed build msg");
@@ -184,6 +187,7 @@ int process (char proctype)
 			if(NULL!=buf)
 			{
 				free(buf);
+                                buf = NULL;
 			}
 		}
 		
