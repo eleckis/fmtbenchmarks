@@ -1,0 +1,40 @@
+
+$#ifndef __USERREG_FD
+$#define __USERREG_FD
+
+*base 6000
+
+
+U_NAME			1	string  - 1 Lietotaja vards
+U_SURNAME		2	string	- 1 Lietotaja uzvards
+U_PERS_CODE		3	string	- 1 Lietotaja personas kods
+U_BIRTH_DATE	4	long	- 1 Lietotaja dzimsanas datums
+U_GENDER		5	char	- 1 Lietotaja dzimums
+U_NATIONALITY	6	string	- 1 Lietotaja tautiba
+U_COUNTRY		7	string	- 1 Lietotaja valsts
+U_CITY			8	string	- 1 Lietotaja pilseta
+U_ADRESS		9	string	- 1 Lietotaja adrese
+U_FAMILY_STATE	10	string	- 1 Lietotaja gimenes stavoklis
+U_CHILDS		11	short	- 1 Lietotaja bernu skaits
+U_DOC_NR		12	string	- 1 Lietotaja uzraditais dokumenta nr
+U_TEL_NR		13	string	- 1 Lietotaja telefona nr
+U_EMAIL			14	string	- 1 Lietotaja epasts
+U_TYPE			15	string	- 1 Lietotaja tips
+U_ADDITDATA		16	string	- 1 Lietotaja papilds dati
+U_LEVEL			17	string	- 1 Lietotaja limenis
+U_PERMISSIONS	18	string	- 1 Lietotaja tiesibas
+U_STATUS		19	short	- 1 Lietotaja statuss
+S_DATE			20	long	- 1 Sistemas datums
+S_UNIQUE_NR		21	string	- 1 Sistemas unikalais nr
+S_REG_TYPE		22	string	- 1 Sistemas registracijas veids
+S_DEVICE_NR		23	string	- 1 Sistemas ierices numurs
+S_APP_VERSION	24	string	- 1 Sistemas lietojuma versija
+E_NAME			25	string	- 1 Darbinieka vards
+E_SURNAME		26	string	- 1 Darbinieka uzvards
+E_IDENT			27	string	- 1 Darbinieka identifikators
+E_NOTES			28	string	- 1 Darbinieka piezimes
+S_REG_MSG		29	string	- 1 Sistemas registracijas zinojums
+S_REG_STATUS	30	short	- 1 Registracijas statuss
+
+
+$#endif
