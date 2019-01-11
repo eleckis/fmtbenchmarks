@@ -29,6 +29,7 @@ extern "C" {
     
     
 #define MAX_BUFSZ                   64000
+#define MAX_STR                     50
     
 /*---------------------------Enums--------------------------------------*/
 /*---------------------------Typedefs-----------------------------------*/
@@ -51,7 +52,7 @@ typedef struct {
     short pyldnum[1000];
     short pyldnum_items;
     
-    char pyldstr[1000][100];
+    char pyldstr[1000][MAX_STR];
     short pyldstr_items;
     
 } Customer_t;
@@ -80,7 +81,7 @@ typedef struct {
 /*---------------------------Globals------------------------------------*/
 /*---------------------------Statics------------------------------------*/
 /*---------------------------Prototypes---------------------------------*/
-extern int msg_build(Message_t *msg, char **outbuf, long *olen);
+extern int msg_build(Message_t *msg, char **outbuf, long *olen, char *svcnm);
 extern int parse_msg(Message_t *msg, char *ibuf, long ilen);
 
 #ifdef __cplusplus
