@@ -1,3 +1,6 @@
+/**
+ * Copyright (C) 2018-2019, Einars Leckis - All Rights Reserved.
+ */
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>

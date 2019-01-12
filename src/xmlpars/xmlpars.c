@@ -1,3 +1,6 @@
+/**
+ * Copyright (C) 2018-2019, Einars Leckis - All Rights Reserved.
+ */
 #include <domain.h>
 #include <stddef.h>
 #include <ndrstandard.h>
