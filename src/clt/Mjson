@@ -1,0 +1,21 @@
+
+SOURCES = userregclt.c
+TARGET  = userregclt_json
+OBJECTS = $(SOURCES:%.c=%.o)
+CFLAGS	= -I../ubftab -I../include -L../jsonpars -g
+LIBS = -ljsonpars -latmiclt -latmi -lubf -lnstd -lpthread -lrt -ldl -lm -ljansson
+
+default: target
+
+target: $(TARGET)
+
+$(TARGET): $(OBJECTS)
+	$(CC) $(CFLAGS) -o $@ $(LDFLAGS) $^ $(LIBS)
+
+%.o: %.cpp
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+clean:
+	-rm *.o
+	-rm $(TARGET)
+

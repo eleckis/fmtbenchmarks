@@ -119,7 +119,7 @@ int process (char proctype)
 	
 	
 
-	for(i=0; i<MAX_ARR; i+=50)
+	for(i=0; i<MAX_ARR; i+=100)
 	{
 		if ('D' == proctype)
 		{
@@ -151,7 +151,7 @@ int process (char proctype)
 				goto out;	
 			}
 			
-			if (FAIL==tpcall(svcname, buf, 0L, &buf, 
+			if (FAIL==tpcall(svcname, buf, len, &buf, 
 				&rsplen, TPNOTIME))
 			{
 				TP_LOG(log_error, "TPCALL: %s failed: %s", 

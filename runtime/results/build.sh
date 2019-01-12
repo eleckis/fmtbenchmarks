@@ -6,9 +6,10 @@
 
 rm *.txt
 rm *.png
-# Run XML Bench
+# Run Bench
 ./run_xml.sh || exit 1
 ./run_ubf.sh || exit 1
+./run_json.sh || exit 1
 
 export NDRX_BENCH_FILE="benchmark_short.txt"
 export NDRX_BENCH_TITLE="Middleware message format benchmark (dec)"

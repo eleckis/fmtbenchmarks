@@ -18,8 +18,6 @@
 #define OFFSZ(STRUCT,ELM)   ((const int) &(((STRUCT *)0)->ELM) )
 #endif
 
-#define XML_VERSION             "1.0"
-
 /*---------------------------Enums--------------------------------------*/
 /*---------------------------Typedefs-----------------------------------*/
 
@@ -89,7 +87,6 @@ int msg_build(Message_t *msg, char **outbuf, long *olen)
     int ret = SUCCEED;
     msgbuilder_t *p = M_msgflds;
     short *p_short;
-    long *p_long;
     void *fld_ptr;
     char *p_string_el;
 
@@ -113,7 +110,7 @@ int msg_build(Message_t *msg, char **outbuf, long *olen)
        goto out;
     }
     
-    /* start libxml2 XML doc */
+    /* start UBF */
     p_ub = (UBFH *)*outbuf;
     while (BBADFLDID!=p->fid)
     {
@@ -235,7 +232,7 @@ int parse_msg(Message_t *msg, char *ibuf, long ilen)
     BFLDOCC occ;
     char data_buf[MAX_STR]; /* this stores any bytes, typed incl short, long and string */
     
-    /* start libxml2 XML doc */
+    /* start UBF parse */
     
     tplogprintubf(log_debug, "Got UBF for parse", p_ub);
     
